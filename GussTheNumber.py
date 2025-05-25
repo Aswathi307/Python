@@ -1,4 +1,4 @@
-print("name:Aswathi.TP\n usn :1AY24AI109\n sec:O") 
+print("name:T P Aswathi\nsec:O\nusn :1AY24AI109") 
 import random
 
 def guess_the_number():
@@ -22,7 +22,5 @@ def guess_the_number():
                 break
         except ValueError:
             print("Please enter a valid number.")
-
-# Run the game
 guess_the_number()
 p
