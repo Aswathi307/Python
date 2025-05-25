@@ -7,14 +7,12 @@ def collatz_sequence(n):
     print("Collatz sequence:")
     print(n, end=' ')
     while n != 1:
-        if n % 2 == 0:  # Even number
+        if n % 2 == 0: 
             n = n // 2
-        else:           # Odd number
+        else:          
             n = 3 * n + 1
         print(n, end=' ')
-    print()  # New line after the sequence
-
-# Example usage:
+    print() 
 try:
     num = int(input("Enter a positive integer: "))
     collatz_sequence(num)
