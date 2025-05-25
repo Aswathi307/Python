@@ -3,9 +3,7 @@ dice_pool = [
     ('green', ['brain', 'brain', 'brain', 'footprint', 'footprint', 'shotgun']),
     ('yellow', ['brain', 'brain', 'footprint', 'footprint', 'shotgun', 'shotgun']),
     ('red', ['brain', 'footprint', 'footprint', 'shotgun', 'shotgun', 'shotgun'])
-] * 2  # 13 dice total (3 green, 4 yellow, 3 red)
-
-# Strategy bots
+] * 2 
 def random_bot(score, brains, shotguns):
     return random.choice([True, False])
 
@@ -24,7 +22,6 @@ def play_turn(bot_func):
     random.shuffle(cup)
 
     while True:
-        # Get 3 dice (reuse footprints if available)
         dice_to_roll = footprints
         while len(dice_to_roll) < 3 and cup:
             die = random.choice(cup)
@@ -32,7 +29,7 @@ def play_turn(bot_func):
             dice_to_roll.append(die)
 
         if not dice_to_roll:
-            break  # no more dice
+            break
 
         new_footprints = []
         for color, faces in dice_to_roll:
@@ -57,9 +54,6 @@ def play_turn(bot_func):
 
     print(f"🧠 Scored {brains} brains this turn!\n")
     return brains
-
-
-# Simulate a game round with different bots
 bots = {
     'RandomBot': random_bot,
     'CautiousBot': cautious_bot,
