@@ -1,4 +1,4 @@
-print("name:aswathi\nsec:o\nusn:1AY24AI109")
+print("name:T P Aswathi\nsec:o\nusn:1AY24AI109")
 def is_valid_chess_board(board):
     valid_positions = [f"{row}{col}" for row in range(1, 9) for col in 'abcdefgh']
     valid_pieces = {'pawn', 'knight', 'bishop', 'rook', 'queen', 'king'}
