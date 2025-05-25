@@ -12,7 +12,7 @@ grid = [
 ]
 
 # Print rotated picture (90 degrees clockwise)
-for x in range(len(grid[0])):  # columns
-    for y in range(len(grid)):  # rows
+for x in range(len(grid[0])):  
+    for y in range(len(grid)): 
         print(grid[y][x], end='')
     print() 
