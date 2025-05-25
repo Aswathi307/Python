@@ -1,4 +1,4 @@
-print("name:Aswathi\nsec:o\nusn:1AY24AI109")
+print("name:T P Aswathi\nsec:o\nusn:1AY24AI109")
 grid = [
     ['.', '.', '.', '.', '.', '.'],
     ['.', 'O', 'O', '.', '.', '.'],
