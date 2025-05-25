@@ -28,6 +28,4 @@ def play_game():
     print(f"\nYou chose: {user_choice}")
     print(f"Computer chose: {computer_choice}")
     print(determine_winner(user_choice, computer_choice))
-
-# Run the game
 play_game()
