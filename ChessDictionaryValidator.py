@@ -1,58 +1,51 @@
 print("name:T P Aswathi\nsec:o\nusn:1AY24AI109")
+
 def is_valid_chess_board(board):
-    valid_positions = [f"{row}{col}" for row in range(1, 9) for col in 'abcdefgh']
+    valid_files = 'abcdefgh'
+    valid_ranks = '12345678'
+    valid_positions = {f + r for f in valid_files for r in valid_ranks}
     valid_pieces = {'pawn', 'knight', 'bishop', 'rook', 'queen', 'king'}
 
-    white_count = 0
-    black_count = 0
-    white_pawns = 0
-    black_pawns = 0
-    white_kings = 0
-    black_kings = 0
+    piece_count = {
+        'w': {'total': 0, 'pawn': 0},
+        'b': {'total': 0, 'pawn': 0}
+    }
 
     for position, piece in board.items():
-        # Validate position
         if position not in valid_positions:
-            print(f"Invalid board position: {position}")
+            print(f"Invalid position: {position}")
             return False
-
-        # Validate piece format
         if len(piece) < 2 or piece[0] not in 'wb' or piece[1:] not in valid_pieces:
             print(f"Invalid piece: {piece}")
             return False
 
-        # Count pieces
-        if piece[0] == 'w':
-            white_count += 1
-            if piece == 'wpawn':
-                white_pawns += 1
-            if piece == 'wking':
-                white_kings += 1
-        else:
-            black_count += 1
-            if piece == 'bpawn':
-                black_pawns += 1
-            if piece == 'bking':
-                black_kings += 1
+        color = piece[0]
+        piece_name = piece[1:]
+        
+        piece_count[color]['total'] += 1
+        if piece_name == 'pawn':
+            piece_count[color]['pawn'] += 1
 
-    if white_count > 16:
-        print("Too many white pieces.")
-        return False
-    if black_count > 16:
-        print("Too many black pieces.")
-        return False
-    if white_pawns > 8:
-        print("Too many white pawns.")
-        return False
-    if black_pawns > 8:
-        print("Too many black pawns.")
-        return False
-    if white_kings != 1:
-        print("Invalid number of white kings.")
-        return False
-    if black_kings != 1:
-        print("Invalid number of black kings.")
-        return False
-
-    print("Board is valid.")
+        if piece_count[color]['total'] > 16:
+            print(f"Too many {color} pieces")
+            return False
+        if piece_count[color]['pawn'] > 8:
+            print(f"Too many {color} pawns")
+            return False
     return True
+if __name__ == "__main__":
+    test_board = {
+        'a1': 'wrook', 'b1': 'wknight', 'c1': 'wbishop', 'd1': 'wqueen',
+        'e1': 'wking', 'f1': 'wbishop', 'g1': 'wknight', 'h1': 'wrook',
+        'a2': 'wpawn', 'b2': 'wpawn', 'c2': 'wpawn', 'd2': 'wpawn',
+        'e2': 'wpawn', 'f2': 'wpawn', 'g2': 'wpawn', 'h2': 'wpawn',
+        'a7': 'bpawn', 'b7': 'bpawn', 'c7': 'bpawn', 'd7': 'bpawn',
+        'e7': 'bpawn', 'f7': 'bpawn', 'g7': 'bpawn', 'h7': 'bpawn',
+        'a8': 'brook', 'b8': 'bknight', 'c8': 'bbishop', 'd8': 'bqueen',
+        'e8': 'bking', 'f8': 'bbishop', 'g8': 'bknight', 'h8': 'brook'
+    }
+
+    if is_valid_chess_board(test_board):
+        print("The chess board is valid.")
+    else:
+        print("The chess board is invalid.")
