@@ -1,4 +1,4 @@
-print(" Name:T P Aswathi\n usn: 1AY24AI109\n section :o
+print(" Name:T P Aswathi\nsec:O\nusn: 1AY24AI109")
 import random
 
 def get_user_choice():
