@@ -1,62 +1,31 @@
-print("Name:T P Aswathi,usn:1AY24AI109,sec:O")
-import time
-import os
-import copy
+print("Name:T P Aswathi\nusn:1AY24AI109\nsec:O")
+grid = [
+  [0,1,0],
+  [0,1,0],
+  [0,1,0]
+]
 
-def print_board(board):
-    for row in board:
-        print(''.join(['█' if cell else ' ' for cell in row]))
-    print()
-def count_neighbors(board, x, y):
-    rows = len(board)
-    cols = len(board[0])
-    count = 0
+def neighbors(x,y):
+  count = 0
+  for i in range(x-1,x+2):
+    for j in range(y-1,y+2):
+      if 0 <= i < 3 and 0 <= j < 3 and (i,j) != (x,y):
+        count += grid[i][j]
+  return count
 
-    for i in range(-1, 2):
-        for j in range(-1, 2):
-            if i == 0 and j == 0:
-                continue
-            ni, nj = x + i, y + j
-            if 0 <= ni < rows and 0 <= nj < cols:
-                count += board[ni][nj]
-    return count
+def step():
+  new_grid = [[0]*3 for _ in range(3)]
+  for i in range(3):
+    for j in range(3):
+      n = neighbors(i,j)
+      if grid[i][j] == 1 and n in (2,3):
+        new_grid[i][j] = 1
+      elif grid[i][j] == 0 and n == 3:
+        new_grid[i][j] = 1
+  return new_grid
 
-
-def next_generation(board):
-    rows = len(board)
-    cols = len(board[0])
-    new_board = copy.deepcopy(board)
-
-    for i in range(rows):
-        for j in range(cols):
-            neighbors = count_neighbors(board, i, j)
-            if board[i][j] == 1:
-                if neighbors < 2 or neighbors > 3:
-                    new_board[i][j] = 0
-            else:
-                if neighbors == 3:
-                    new_board[i][j] = 1
-    return new_board
-
-
-def main():
-    board = [
-        [0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 0, 0, 0],
-        [0, 1, 1, 0, 0, 0],
-        [0, 0, 0, 1, 1, 0],
-        [0, 0, 0, 1, 1, 0],
-        [0, 0, 0, 0, 0, 0]
-    ]
-
-    generations = 20
-    delay = 0.5
-    for _ in range(generations):
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print_board(board)
-        board = next_generation(board)
-        time.sleep(delay)
-
-
-if __name__ == "__main__":
-    main()
+for _ in range(5):
+  for row in grid:
+    print(''.join(str(c) for c in row))
+  print()
+  grid = step()
