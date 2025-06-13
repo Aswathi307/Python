@@ -1,6 +1,6 @@
 print("name:T P Aswathi\nsec:o\nusn:1AY24AI109")
 def create_character_grid(rows, cols, char):
-    """Create a grid (list of lists) filled with the specified character."""
+    
     grid = []
     for _ in range(rows):
         row = [char] * cols
