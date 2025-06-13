@@ -1,13 +1,12 @@
 print("name:T P Aswathi\nsec:o\nusn:1AY24AI109")
 def is_valid_square(square):
-    """Check if the square is valid on a chessboard (a1-h8)."""
-    if len(square) != 2:
+        if len(square) != 2:
         return False
     file, rank = square[0], square[1]
     return file in 'abcdefgh' and rank in '12345678'
 
 def is_valid_piece(piece):
-    """Check if the piece string is valid."""
+    
     valid_pieces = {'p', 'r', 'n', 'b', 'q', 'k'}
     if piece == '':  
         return True
@@ -17,7 +16,7 @@ def is_valid_piece(piece):
     return color in ('w', 'b') and p in valid_pieces
 
 def validate_chess_dict(chess_dict):
-    """Validate the chess dictionary representation."""
+   
     for square, piece in chess_dict.items():
         if not is_valid_square(square):
             print(f"Invalid square: {square}")
