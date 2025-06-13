@@ -10,8 +10,8 @@ def collatz_sequence(n):
             n = n // 2
         else:
             n = 3 * n + 1
-    print(1)  # Final value
+    print(1) 
 
-# Example usage
+
 num = int(input("Enter a positive integer: "))
 collatz_sequence(num)
