@@ -1,7 +1,6 @@
 print("name:T P Aswathi\nsec:o\nusn:1AY24AI109")
 print("name:T P Aswathi\nsec:o\nusn:1AY24AI109")
-'''write a program to create a bot for the game Zombie Dice
-    The bot should be able to play the game and make decisions based on the rules of the game. '''
+
 import random as ran
 import time
 dice={
