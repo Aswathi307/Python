@@ -1,3 +1,4 @@
+print("name:T P Aswathi\n","sec:o\n","usn:1AY24AI109")
 import os
 import re
 import shutil
@@ -30,7 +31,7 @@ fill_gaps(folder_path, prefix)
 
 
 
-
+print("name:T P Aswathi\n","sec:o\n","usn:1AY24AI109")
 def insert_gap(folder, prefix, position):
     pattern = re.compile(rf'^({prefix})(\d+)(\.txt)$')
     files = [f for f in os.listdir(folder) if pattern.match(f)]
