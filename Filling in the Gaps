@@ -1,0 +1,58 @@
+import os
+import re
+import shutil
+
+def fill_gaps(folder, prefix):
+    pattern = re.compile(rf'^({prefix})(\d+)(\.txt)$')
+    files = [f for f in os.listdir(folder) if pattern.match(f)]
+    
+    matched_files = []
+    for file in files:
+        match = pattern.match(file)
+        if match:
+            num = int(match.group(2))
+            matched_files.append((file, num))
+    matched_files.sort(key=lambda x: x[1])
+
+    expected_num = 1
+    for original_name, actual_num in matched_files:
+        expected_name = f"{prefix}{str(expected_num).zfill(3)}.txt"
+        if actual_num != expected_num:
+            print(f"Renaming {original_name} → {expected_name}")
+            shutil.move(
+                os.path.join(folder, original_name),
+                os.path.join(folder, expected_name)
+            )
+        expected_num += 1
+folder_path = input("Enter the folder path: ")
+prefix = input("Enter the filename prefix (e.g., 'spam'): ")
+fill_gaps(folder_path, prefix)
+
+
+
+
+def insert_gap(folder, prefix, position):
+    pattern = re.compile(rf'^({prefix})(\d+)(\.txt)$')
+    files = [f for f in os.listdir(folder) if pattern.match(f)]
+
+    matched_files = []
+    for file in files:
+        match = pattern.match(file)
+        if match:
+            num = int(match.group(2))
+            matched_files.append((file, num))
+    matched_files.sort(key=lambda x: x[1], reverse=True)
+
+    for file, num in matched_files:
+        if num >= position:
+            new_name = f"{prefix}{str(num + 1).zfill(3)}.txt"
+            print(f"Renaming {file} → {new_name}")
+            shutil.move(
+                os.path.join(folder, file),
+                os.path.join(folder, new_name)
+            )
+folder_path = input("Enter the folder path: ")
+prefix = input("Enter the filename prefix (e.g., 'spam'): ")
+gap_position = int(input("Enter the position to insert the gap (e.g., 2): "))
+insert_gap(folder_path, prefix, gap_position)
+
