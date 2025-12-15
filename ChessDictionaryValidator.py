@@ -7,7 +7,7 @@ def is_valid_square(square):
 
 def is_valid_piece(piece):
     
-    valid_pieces = {'p', 'r', 'n', 'b', 'q', 'k'}
+    valid_pieces =  {'p', 'r', 'n', 'b', 'q', 'k'}
     if piece == '':  
         return True
     if len(piece) != 2:
